@@ -17,5 +17,6 @@ Route::get('/', function () {
 
 
 Route::get('test',function(){
+    var_dump(bcrypt("Denis"));
    dump("daa");
 });
