@@ -14,10 +14,3 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-Route::get('test',function(){
-    var_dump(bcrypt("Denis"));
-    //APP_KEY=base64:eqUJ/G7qZOKOAWDfIbcplT8SQacMUfBVW+OqTXnqaaY=
-   dump("daa");
-});
