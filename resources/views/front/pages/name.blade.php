@@ -23,7 +23,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand logo-contact"
-                           href="{!!URL::to('/')!!}"><span>{!! HTML::image('name/img/logo-name.png','your-name.club') !!}</span></a>
+                           href="{!!URL::to('/')!!}"><span>{!! HTML::image('front_name/img/logo-name.png','your-name.club') !!}</span></a>
                     </div>
                     <div class="collapse navbar-collapse contact-top" id="bs-example-navbar-collapse-1">
                         {!! Form::open( array ('route' => 'search')) !!}
@@ -64,7 +64,7 @@
 
                     </div>
                     <div class="col-md-4 col-sm-12 image-single">
-                        {!! HTML::image('name/img/image-name.jpg','your-name.club',array('class' => 'img-responsive')) !!}
+                        {!! HTML::image('front_name/img/image-name.jpg','your-name.club',array('class' => 'img-responsive')) !!}
                     </div>
 
                     <div class="col-md-12 col-sm-12">
@@ -111,8 +111,8 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-3 content-right">
-                    {!! HTML::image('name/img/facebook-box.png','your-name.club',array('class' => 'img-responsive')) !!}
-                    {!! HTML::image('name/img/300x600-template.jpg','your-name.club',array('class' => 'img-responsive')) !!}
+                    {!! HTML::image('front_name/img/facebook-box.png','your-name.club',array('class' => 'img-responsive')) !!}
+                    {!! HTML::image('front_name/img/300x600-template.jpg','your-name.club',array('class' => 'img-responsive')) !!}
                 </div>
             </div>
         </div>

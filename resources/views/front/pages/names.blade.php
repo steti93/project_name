@@ -23,7 +23,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand logo-contact"
-                           href="{!!URL::to('/')!!}"><span>{!! HTML::image('name/img/logo-name.png','your-name.club') !!}</span></a>
+                           href="{!!URL::to('/')!!}"><span>{!! HTML::image('front_name/img/logo-name.png','your-name.club') !!}</span></a>
                     </div>
                     <div class="collapse navbar-collapse contact-top" id="bs-example-navbar-collapse-1">
                         {!! Form::open( array ('route' => 'search')) !!}
@@ -54,7 +54,7 @@
                     <div class="letters">
                         <ul class="list-inline">
                             @foreach(range('A','Z') as $letter)
-                                <li class="alfabet-search"><a href="{!!URL::to('/letter',$letter)!!}">{!! $letter !!}</a>
+                                <li class="alfabet-search"><a href="{!!URL::to('letter',$letter)!!}">{!! $letter !!}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -76,75 +76,38 @@
                     </div>
                     <hr>
                     <div class="list-names">
-                        <div class="name">
+                        @foreach($items as $item)
+                            <div class="name">
                             <ul class="list-inline">
-                                <li><a href="#">Ion</a></li>
-                                <li class="masculine">@lang('lang.masculine')</li>
-                                <li><a href="#">Moldova</a></li>
+                                <li><a href="{{URL::route('name',$item->slug)}}">{{$item->name}}</a></li>
+                                <?php
+                                    $class='';
+                                    if($item->genders_id==1){
+                                        $class='masculine';
+                                    }else if($item->genders_id==2){
+                                        $class='femenine';
+                                    }else{
+                                        $class='unisex';
+                                    }
+                                ?>
+                                <li class="{{$class}}">{{$item->genders_name}}</li>
+                                @if(json_decode($item->usages))
+                                    @foreach(json_decode($item->usages,true) as $usage)
+
+                                    <li><a href="{{key($usage)}}">@if($loop->index),@endif {{$usage[key($usage)]}}</a></li>
+                                    @endforeach
+                                @endif
                             </ul>
                             <p>
                                 Meaning unknown, perhaps from Sumerian meaning "house of water". This was the Akkadian and Babylonian name of the Sumerian water god Enki.
                             </p>
                         </div>
-                        <div class="name">
-                            <ul class="list-inline">
-                                <li><a href="#">Madalena</a></li>
-                                <li class="feminine">@lang('lang.feminine')</li>
-                                <li><a href="#">Moldova</a></li>
-                                <li><a href="#">Romania</a></li>
-                            </ul>
-                            <p>
-                                Means "brown horse" from Gaelic each "horse" and donn "brown". It was sometimes Anglicized as Hector.
-                            </p>
-                        </div>
-
-                        <div class="name">
-                            <ul class="list-inline">
-                                <li><a href="#">Trindavel</a></li>
-                                <li class="unisex">@lang('lang.unisex')</li>
-                                <li><a href="#">Moldova</a></li>
-                                <li><a href="#">Romania</a></li>
-                            </ul>
-                            <p>
-                                Means "brown horse" from Gaelic each "horse" and donn "brown". It was sometimes Anglicized as Hector.
-                            </p>
-                        </div>
-                        <div class="name">
-                            <ul class="list-inline">
-                                <li><a href="#">Trindavel</a></li>
-                                <li class="unisex">@lang('lang.unisex')</li>
-                                <li><a href="#">Moldova</a></li>
-                                <li><a href="#">Romania</a></li>
-                            </ul>
-                            <p>
-                                Means "brown horse" from Gaelic each "horse" and donn "brown". It was sometimes Anglicized as Hector.
-                            </p>
-                        </div>
-                        <div class="name">
-                            <ul class="list-inline">
-                                <li><a href="#">Trindavel</a></li>
-                                <li class="unisex">@lang('lang.unisex')</li>
-                                <li><a href="#">Moldova</a></li>
-                                <li><a href="#">Romania</a></li>
-                            </ul>
-                            <p>
-                                Means "brown horse" from Gaelic each "horse" and donn "brown". It was sometimes Anglicized as Hector.
-                            </p>
-                        </div>                        <div class="name">
-                            <ul class="list-inline">
-                                <li><a href="#">Trindavel</a></li>
-                                <li class="unisex">@lang('lang.unisex')</li>
-                                <li><a href="#">Moldova</a></li>
-                                <li><a href="#">Romania</a></li>
-                            </ul>
-                            <p>
-                                Means "brown horse" from Gaelic each "horse" and donn "brown". It was sometimes Anglicized as Hector.
-                            </p>
-                        </div>
-
+                        @endforeach
                     </div>
                 </div>
             </div>
+
+            {!! $items->links('../../vendor/pagination/bootstrap-4')  !!}
         </div>
 
         <div class="row footer">

@@ -16,7 +16,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand logo-contact" href="{!! URL::to('/')!!}"><span>{!! HTML::image('name/img/name-logo.png','your-name.club',['style' => 'width:50px;height:50px']) !!}
+                        <a class="navbar-brand logo-contact" href="{!! URL::to('/')!!}"><span>{!! HTML::image('front_name/img/name-logo.png','your-name.club',['style' => 'width:50px;height:50px']) !!}
 	  </span></a>
                     </div>
                     <div class="collapse navbar-collapse contact-top" id="bs-example-navbar-collapse-1">

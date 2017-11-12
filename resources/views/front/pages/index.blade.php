@@ -1,7 +1,5 @@
 @extends('front.layouts.layout')
 @section('content')
-
-
     <title>meta.title</title>
 
     <meta name="Description"
@@ -28,7 +26,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand " href="{!!URL::to('/')!!}"><span class="logo">
-{{ HTML::image('name/img/logo-name.png', 'no-image-gender', array('class' => 'img-responsive logo-image')) }}
+{{ HTML::image('front_name/img/logo-name.png', 'no-image-gender', array('class' => 'img-responsive logo-image')) }}
 		</span></a>
                     </div>
 
@@ -81,19 +79,19 @@
                 </div>
                 <div class="col-md-4">
                     <a class="name-gender">
-                        {{ HTML::image('name/img/masculine.png', 'masculine', array('class' => 'img-responsive gender-image')) }}
+                        {{ HTML::image('front_name/img/masculine.png', 'masculine', array('class' => 'img-responsive gender-image')) }}
                         <p>@lang('lang.masculine')</p>
                     </a>
                 </div>
                 <div class="col-md-4">
                     <a class="name-gender">
-                        {{ HTML::image('name/img/feminine.png', 'masculine', array('class' => 'img-responsive gender-image')) }}
+                        {{ HTML::image('front_name/img/feminine.png', 'masculine', array('class' => 'img-responsive gender-image')) }}
                         <p>@lang('lang.feminine')</p>
                     </a>
                 </div>
                 <div class="col-md-4">
                     <a class="name-gender">
-                        {{ HTML::image('name/img/unisex.png', 'masculine', array('class' => 'img-responsive gender-image')) }}
+                        {{ HTML::image('front_name/img/unisex.png', 'masculine', array('class' => 'img-responsive gender-image')) }}
                         <p>@lang('lang.unisex')</p>
                     </a>
                 </div>
