@@ -17,3 +17,5 @@ Route::get('name',['as'=>'name','uses'=>'HomeController@getName']);
 Route::get('contactUsForm', 'HomeController@getContactUsForm' );
 Route::any('search',['as' => 'search','uses' => 'SearchController@getSearchElements']);
 Route::get('letter/{letter}',['as' => 'letter','uses' => 'SearchController@getSearchString']);
+
+include_once 'admin/admin.php';

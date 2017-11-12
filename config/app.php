@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Chisinau',
 
     /*
     |--------------------------------------------------------------------------
@@ -180,6 +180,11 @@ return [
         //Added missing dependency
         Collective\Html\HtmlServiceProvider::class,
 
+        //
+
+        \Torann\GeoIP\GeoIPServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
+        Barryvdh\Elfinder\ElfinderServiceProvider::class,
     ],
 
     /*
@@ -233,6 +238,8 @@ return [
 
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class,
+        'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

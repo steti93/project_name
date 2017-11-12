@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-
+use Lang;
 class RouteServiceProvider extends ServiceProvider
 {
     /**
@@ -35,6 +35,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
+        $lang=Lang::getLocale();
+        view()->share('name_user','name_'.$lang);
+
+        view()->share('lang_data',['en'=>'en']);
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
