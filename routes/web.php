@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@getIndex' );
+Route::get('/names', 'HomeController@getNames' );
+Route::get('/item', 'HomeController@getName' );
+Route::get('/contactUsForm', 'HomeController@getContactUsForm' );
+Route::any('search',['as' => 'search','uses' => 'SearchController@getSearchElements']);
+Route::get('letter/{letter}',['as' => 'letter','uses' => 'SearchController@getSearchString']);
