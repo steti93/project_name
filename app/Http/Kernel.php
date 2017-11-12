@@ -18,7 +18,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        \App\Http\Middleware\TrustProxies::class,
+        \Illuminate\Session\Middleware\StartSession::class,
     ];
 
     /**
@@ -30,7 +30,7 @@ class Kernel extends HttpKernel
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Illuminate\Session\Middleware\StartSession::class,
+
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
@@ -57,5 +57,11 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'guest_admin'   =>\App\Http\Middleware\GuestAdmin::class,
+        'guest_user'   =>\App\Http\Middleware\GuestUser::class,
+        'user'          =>\App\Http\Middleware\User::class,
+        'admin'          =>\App\Http\Middleware\Admin::class,
+        'redirect_user' =>\App\Http\Middleware\RedirectIfIsLoginUser::class,
+        'redirect_admin' =>\App\Http\Middleware\RedirectIfIsLoginAdmin::class,
     ];
 }
