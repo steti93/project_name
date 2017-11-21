@@ -14,7 +14,8 @@
 Route::get('/', 'HomeController@getIndex' );
 Route::get('names', 'HomeController@getNames' );
 Route::get('name',['as'=>'name','uses'=>'HomeController@getName']);
-Route::get('contactUsForm', 'HomeController@getContactUsForm' );
+Route::get('/categories', 'HomeController@getCategories' );
+Route::get('/contactUsForm', 'HomeController@getContactUsForm' );
 Route::any('search',['as' => 'search','uses' => 'SearchController@getSearchElements']);
 Route::get('letter/{letter}',['as' => 'letter','uses' => 'SearchController@getSearchString']);
 
