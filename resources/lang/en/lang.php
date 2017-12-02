@@ -20,5 +20,9 @@ return [
     'equivalents' => 'Equivalents',
     'diminutives' => 'Diminutives and Short Forms',
     'otherForms' => 'Other Forms',
+    'findYourName' => 'Find Your Name',
+    'byLetter' => 'By Letter',
+    'byUsage' => 'By Usage',
+    'byGender' => 'By Gender',
 ];
 ?>

@@ -936,15 +936,6 @@ hgroup h2.lead {
     font-family: Lato-Regular;
     font-size: 22px;
 }
-.name .masculine{
-    color: #000000;
-}
-.name .unisex{
-    color: #80001c;
-}
-.name .feminine{
-    color: #8d46b0;
-}
 .category-home{
     text-align: center;
     width: 88%;
@@ -1003,3 +994,49 @@ ol a{
 .image-single{
     margin-top: 20px;
 }
+.by-gender{
+    padding: 5px;
+}
+.by-gender li{
+    text-align:center;
+}
+.masculine{
+    color: #000000;
+}
+.unisex{
+    color: #80001c;
+}
+.feminine{
+    color: #8d46b0;
+}
+.categories-content{
+    margin-bottom: 5px;
+    padding:10px;
+}
+.categories-content h2{
+    font-family: Lato-Bold;
+    font-size: 20px;
+    line-height: 18px;
+    text-align: left;
+    font-weight: 700;
+    margin-top: 10px;
+}
+.categories-content h3{
+    font-family: Lato-Regular;
+    font-size: 18px;
+    color: #262626;
+    line-height: 16px;
+    list-style-type: none;
+}
+.categories-content a {
+    color: #262626;
+}
+.categories-content h3 a::before {
+    content: ">  ";
+}
+/* highlight col-* */
+.row-categories [class*='col-'] {
+    background-clip: content-box;
+    min-height: 120px;
+}
+

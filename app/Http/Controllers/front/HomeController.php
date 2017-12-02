@@ -20,4 +20,8 @@ class HomeController extends BaseController
     public function getName(){
         return View ('front.pages.name');
     }
+
+    public function getCategories(){
+        return View('front.pages.categories');
+    }
 }
