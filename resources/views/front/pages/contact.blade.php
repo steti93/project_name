@@ -20,7 +20,7 @@
 	  </span></a>
                     </div>
                     <div class="collapse navbar-collapse contact-top" id="bs-example-navbar-collapse-1">
-                        {!! Form::open( array ('route' => 'search')) !!}
+                        {!! Form::open( array ('id' => 'search_form')) !!}
                         <div class="input-group col-xs-5 col-md-8 pull-left search-contact">
                             <input type="text" name="search" class="search-query form-control" placeholder="Search"/>
                             <span class="input-group-btn">

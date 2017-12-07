@@ -20,6 +20,7 @@ $data = old($name_user,$data);
     @if(isset($item))
         {!! Form::hidden('id',$item->id) !!}
     @endif
+
     <div class="nav-tabs-custom" >
         <ul class="nav nav-tabs">
             <?php $inc = 0;  ?>

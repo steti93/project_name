@@ -44,11 +44,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">
-                        {!! Form::open( array ('route' => 'search')) !!}
+                        {!! Form::open(['id'=>'search_form']) !!}
                         <div id="imaginary_container">
                             <div class="input-group stylish-input-group">
-
-                                <input type="text" name="search" class="form-control" placeholder="Search your name">
+                                <input type="text" name="search" minlength="1" required class="form-control" placeholder="Search your name">
                                 <span class="input-group-addon">
                         <button type="submit">
                             <span class="glyphicon glyphicon-search"></span>
@@ -61,9 +60,9 @@
                     </div>
 
                 </div>
-                <div class="row" style="text-align:center;padding-top:30px;">
-                    <a id="slow-down" href="#books" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>
-                </div>
+                {{--<div class="row" style="text-align:center;padding-top:30px;">--}}
+                    {{--<a id="slow-down" href="#books" class="down-arrow-btn"><i class="fa fa-chevron-down"></i></a>--}}
+                {{--</div>--}}
             </div>
 
         </div>
@@ -96,75 +95,33 @@
                     </a>
                 </div>
                 <div class="row category-home">
+                    @foreach($usages->chunk(3) as $chunk)
                     <div class="col-xs-12 col-sm-6 col-md-3 category-list">
-                        <a href="#" style="color: #000;">
+                        @foreach($chunk as $item)
+                        <a href="{{URL::route('usages').'?usages='.$item->slug}}" style="color: #000;">
                             <h2 style="margin-top:0;">
-                                <span>Denumire </span>
+                                @if($item->id==9)
+                                    <span>African</span>
+                                @elseif($item->id==151)
+                                    <span>Biblical</span>
+                                @elseif($item->id==117)
+                                    <span>Mythology</span>
+                                @else
+                                <span>{{$item->name}}</span>
+                                @endif
                             </h2>
                         </a>
-                        <a href="#" style="color: #000;">
-                            <h2 style="margin-top:0;">
-                                <span>Denumire </span>
-                            </h2>
-                        </a>
-                        <a href="#" style="color: #000;">
-                            <h2 style="margin-top:0;">
-                                <span>Denumire </span>
-                            </h2>
-                        </a>
+                         @if($loop->last && $loop->parent->last )
+                                    <a href="{{URL::route('categories')}}" style="color: #000;">
+                                        <h2 style="margin-top:0;">
+                                            <span>All</span>
+                                        </h2>
+                                    </a>
+                         @endif
+                        @endforeach
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3 category-list">
-                        <a href="#" style="color: #000;">
-                            <h2 style="margin-top:0;">
-                                <span>Denumire </span>
-                            </h2>
-                        </a>
-                        <a href="#" style="color: #000;">
-                            <h2 style="margin-top:0;">
-                                <span>Denumire </span>
-                            </h2>
-                        </a>
-                        <a href="#" style="color: #000;">
-                            <h2 style="margin-top:0;">
-                                <span>Denumire </span>
-                            </h2>
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3 category-list">
-                        <a href="#" style="color: #000;">
-                            <h2 style="margin-top:0;">
-                                <span>Denumire </span>
-                            </h2>
-                        </a>
-                        <a href="#" style="color: #000;">
-                            <h2 style="margin-top:0;">
-                                <span>Denumire </span>
-                            </h2>
-                        </a>
-                        <a href="#" style="color: #000;">
-                            <h2 style="margin-top:0;">
-                                <span>Denumire </span>
-                            </h2>
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-3 category-list">
-                        <a href="#" style="color: #000;">
-                            <h2 style="margin-top:0;">
-                                <span>Denumire </span>
-                            </h2>
-                        </a>
-                        <a href="#" style="color: #000;">
-                            <h2 style="margin-top:0;">
-                                <span>Denumire </span>
-                            </h2>
-                        </a>
-                        <a href="#" style="color: #000;">
-                            <h2 style="margin-top:0;">
-                                <span>Denumire </span>
-                            </h2>
-                        </a>
-                    </div>
-                </div>
+                    @endforeach
+
 
             </div>
         </div>
@@ -181,13 +138,26 @@
                             <div class="block-content">
                                 <div class="name">
                                     <ul class="list-inline">
-                                        <li><a href="#">Trindavel</a></li>
-                                        <li class="unisex">@lang('lang.unisex')</li>
-                                        <li><a href="#">Moldova</a></li>
-                                        <li><a href="#">Romania</a></li>
+                                        <li><a href="{{URL::route('name',$top_name->slug)}}">{{$top_name->name}}</a></li>
+                                        <?php
+                                        $class='';
+                                        if($top_name->genders_id==1){
+                                            $class='masculine';
+                                        }else if($top_name->genders_id==2){
+                                            $class='femenine';
+                                        }else{
+                                            $class='unisex';
+                                        }
+                                        ?>
+                                        @if(isset($genders[$top_name->genders_id])) <li class="{{$class}}">{{$genders[$top_name->genders_id]}}</li>@endif
+                                        @if(json_decode($top_name->usages))
+                                            @foreach(json_decode($top_name->usages,true) as $usage)
+                                                <li><a href="{{key($usage)}}">@if($loop->index),@endif {{$usage[key($usage)]}}</a></li>
+                                            @endforeach
+                                        @endif
                                     </ul>
                                     <p>
-                                        Means "brown horse" from Gaelic each "horse" and donn "brown". It was sometimes Anglicized as Hector.
+                                        {!! str_limit(strip_tags($top_name->meaning),100,' ...') !!}
                                     </p>
                                 </div>
                             </div>
@@ -201,22 +171,21 @@
                             <div class="block-content">
                                 <div class="col-md-6 col-sm-12">
                                     <ol>
+                                        @foreach($name_masculine as $item)
                                         <li>
-                                            <a href="#" >Ion</a>
+                                            <a href="{{URL::Route('name',$item->slug)}}" >{{$item->name}}</a>
                                         </li>
-                                        <li>
-                                            <a href="#" >Marina</a>
-                                        </li>
+                                        @endforeach
+
                                     </ol>
                                 </div>
                                 <div class="col-md-6 col-sm-12">
                                     <ol>
-                                        <li>
-                                            <a href="#" >Ion</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" >Marina</a>
-                                        </li>
+                                        @foreach($name_femenine as $item)
+                                            <li>
+                                                <a href="{{URL::Route('name',$item->slug)}}" >{{$item->name}}</a>
+                                            </li>
+                                        @endforeach
                                     </ol>
                                 </div>
                             </div>
@@ -234,4 +203,6 @@
         </div>
     </div>
 @stop
+
+
 

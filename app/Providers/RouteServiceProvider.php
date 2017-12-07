@@ -43,6 +43,9 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
+
+        view()->share('genders',[1=>'Masculine',2=>'Femenine',3=>'Unisex']);
+
         //
     }
 

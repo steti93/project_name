@@ -23,10 +23,10 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand logo-contact"
-                           href="{!!URL::to('/')!!}"><span>{!! HTML::image('name/img/logo-name.png','your-name.club') !!}</span></a>
+                           href="{!!URL::to('/')!!}"><span>{!! HTML::image('front_name/img/logo-name.png','your-name.club') !!}</span></a>
                     </div>
                     <div class="collapse navbar-collapse contact-top" id="bs-example-navbar-collapse-1">
-                        {!! Form::open( array ('route' => 'search')) !!}
+                        {!! Form::open( array ('id' => 'search_form')) !!}
                         <div class="input-group col-xs-3 col-md-5 pull-left search-contact">
                             <input type="text" name="search" class="search-query form-control" placeholder="Search"/>
                             <span class="input-group-btn">
@@ -65,20 +65,20 @@
                     <div class="by-gender">
                         <ul class="list-inline">
                             <li>
-                                <a href="#">
-                                    {{ HTML::image('name/img/masculine.png', 'masculine', array('class' => 'img-responsive gender-image')) }}
+                                <a href="{{URL::Route('usages').'?gender=masculine'}}">
+                                    {{ HTML::image('front_name/img/masculine.png', 'masculine', array('class' => 'img-responsive gender-image')) }}
                                     <span class="masculine">@lang('lang.masculine')</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    {{ HTML::image('name/img/feminine.png', 'feminine', array('class' => 'img-responsive gender-image')) }}
+                                <a href="{{URL::Route('usages').'?gender=femenine'}}">
+                                {{ HTML::image('front_name/img/feminine.png', 'feminine', array('class' => 'img-responsive gender-image')) }}
                                     <span class="feminine">@lang('lang.feminine')</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    {{ HTML::image('name/img/unisex.png', 'unisex', array('class' => 'img-responsive gender-image')) }}
+                                <a href="{{URL::Route('usages').'?gender=unisex'}}">
+                                {{ HTML::image('front_name/img/unisex.png', 'unisex', array('class' => 'img-responsive gender-image')) }}
                                     <span class="unisex">@lang('lang.unisex')</span>
                                 </a>
                             </li>
@@ -88,256 +88,25 @@
                     <h3>@lang('lang.byUsage')</h3>
                     <div class="container">
                         <div class="row-categories">
+                            @foreach($usages as $usage)
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="well">
                                     <div class="block-header">
                             <span>
-                                African
+                               {{$usage->name}}
                             </span>
                                     </div>
                                     <div class="categories-content">
-                                        <h2><a href="#">All</a></h2>
-                                        <h2><a href="#">Eastern African</a></h2>
-                                        <h3><a href="#">Amharic</a></h3>
+                                        @foreach($usage['niv2'] as $niv2)
+                                        <h2><a href="{{URL::route('usages').'?usage='.$niv2->slug}}">{{$niv2->name}}</a></h2>
+                                            @foreach($niv2['niv3'] as $niv3)
+                                                    <h3><a href="{{URL::route('usages').'?usage='.$niv3->slug}}">{{$niv3->name}}</a></h3>
+                                            @endforeach
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12 ">
-                                <div class="well">
-                                    <div class="block-header">
-                            <span>
-                                African
-                            </span>
-                                    </div>
-                                    <div class="categories-content">
-                                        <h2><a href="#">All</a></h2>
-                                        <h2><a href="#">Eastern African</a></h2>
-                                        <h3><a href="#">Amharic</a></h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="well">
-                                    <div class="block-header">
-                            <span>
-                                African
-                            </span>
-                                    </div>
-                                    <div class="categories-content">
-                                        <h2><a href="#">All</a></h2>
-                                        <h2><a href="#">Eastern African</a></h2>
-                                        <h3><a href="#">Amharic</a></h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="well">
-                                    <div class="block-header">
-                            <span>
-                                African
-                            </span>
-                                    </div>
-                                    <div class="categories-content">
-                                        <h2><a href="#">All</a></h2>
-                                        <h2><a href="#">Eastern African</a></h2>
-                                        <h3><a href="#">Amharic</a></h3>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="well">
-                                <div class="block-header">
-                            <span>
-                                African
-                            </span>
-                                </div>
-                                <div class="categories-content">
-                                    <h2><a href="#">All</a></h2>
-                                    <h2><a href="#">Eastern African</a></h2>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                    <h3><a href="#">Amharic</a></h3>
-                                </div>
-                            </div>
-                        </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="well">
-                                    <div class="block-header">
-                            <span>
-                                African
-                            </span>
-                                    </div>
-                                    <div class="categories-content">
-                                        <h2><a href="#">All</a></h2>
-                                        <h2><a href="#">Eastern African</a></h2>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="well">
-                                    <div class="block-header">
-                            <span>
-                                African
-                            </span>
-                                    </div>
-                                    <div class="categories-content">
-                                        <h2><a href="#">All</a></h2>
-                                        <h2><a href="#">Eastern African</a></h2>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                        <h3><a href="#">Amharic</a></h3>
-                                    </div>
-                                </div>
-                            </div>
-
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -354,4 +123,11 @@
             </div>
         </div>
     </div>
+@stop
+@section("script")
+    <script>
+        $('.row-categories').masonry({
+            itemSelector : '.col-md-4'
+        });
+    </script>
 @stop

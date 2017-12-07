@@ -1,13 +1,12 @@
 @extends('front.layouts.layout')
 @section('content')
-    <title>name</title>
+    <title>{{$item->name}}</title>
     <meta name="Description" content="description">
     <meta property="og:url" content="{!!Request::url()!!}"/>
     <meta property="og:type" content="website"/>
     <meta property="og:title" content=""/>
     <meta property="og:description" content=""/>
     <meta property="og:image" content=""/>
-    </head>
     </head>
     <body>
     <div class="container contact">
@@ -26,7 +25,7 @@
                            href="{!!URL::to('/')!!}"><span>{!! HTML::image('front_name/img/logo-name.png','your-name.club') !!}</span></a>
                     </div>
                     <div class="collapse navbar-collapse contact-top" id="bs-example-navbar-collapse-1">
-                        {!! Form::open( array ('route' => 'search')) !!}
+                        {!! Form::open( array ('id' => 'search_form')) !!}
                         <div class="input-group col-xs-3 col-md-5 pull-left search-contact">
                             <input type="text" name="search" class="search-query form-control" placeholder="Search"/>
                             <span class="input-group-btn">
@@ -49,22 +48,29 @@
                 <div class="col-xs-12 col-sm-12 col-md-9 single-name">
                     <div class="col-md-8 col-sm-12">
                         <h2>
-                            @lang('lang.givenName') Ion
+                            @lang('lang.givenName') {{$item->name}}
                         </h2>
                         <hr>
                         <div>
                             <span class="first-span">@lang('lang.gender')</span>
-                            <span><a href="#">@lang('lang.masculine')</a></span>
+                            @if(array_key_exists($item->genders_id,$genders))
+                            <span><a href="{{URL::route('usages').'?gender='.strtolower($genders[$item->genders_id])}}">{{$genders[$item->genders_id]}}</a></span>
+                            @endif
                         </div>
                         <div>
                             <span class="first-span">@lang('lang.usage')</span>
-                            <span><a href="#">@lang('lang.masculine')</a></span>
+                            @if(json_decode($item->usages))
+                                @foreach(json_decode($item->usages,true) as $usage)
+                                    <span><a href="{{URL::route('usages').'?usage='.key($usage)}}">@if($loop->index),@endif {{$usage[key($usage)]}}</a></span>
+                                @endforeach
+                            @endif
                         </div>
                         <hr>
 
                     </div>
                     <div class="col-md-4 col-sm-12 image-single">
-                        {!! HTML::image('front_name/img/image-name.jpg','your-name.club',array('class' => 'img-responsive')) !!}
+                        <img src="{!! \App\Http\Controllers\Admin\NamesController::GetImage($item) !!}" class="img-responsive">
+
                     </div>
 
                     <div class="col-md-12 col-sm-12">
@@ -73,39 +79,31 @@
                         </h2>
                         <hr>
                         <p>
-                            Means "glory of Hera" from the name of the goddess HERA combined with Greek κλεος (kleos) "glory". This was the name of a hero in Greek and Roman mythology, the son of Zeus and the mortal woman Alcmene. After being driven insane by Hera and killing his own children, Herakles completed twelve labours in order to atone for his crime and become immortal.
-                        </p>
+                            {!! $item->meaning !!}
+                       </p>
                         <hr>
                         <h2>
                             @lang('lang.related')
                         </h2>
                         <hr>
                         <div class="related">
-                            <h3>@lang('lang.equivalents')</h3>
-
-                            <div>
-                                <span class="first-span">Rusian</span>
-                                <span><a href="">Hercule</a></span>
-                            </div>
-
-                            <div>
-                                <span class="first-span">Rusian</span>
-                                <span><a href="">Hercule</a></span>
-                            </div>
-
-                            <h3>@lang('lang.diminutives')</h3>
-
-                            <div>
-                                <span class="first-span">Rusian</span>
-                                <span><a href="">Hercule</a></span>
-                            </div>
-
-                            <h3>@lang('lang.otherForms')</h3>
-
-                            <div>
-                                <span class="first-span">Rusian</span>
-                                <span><a href="">Hercule</a></span>
-                            </div>
+                            <?php $related=json_decode($item->related); ?>
+                            @if($related)
+                                @foreach($related as $cat=>$value)
+                                    <h3>{{$cat}}</h3>
+                                    @foreach($value as $name=>$array)
+                                        <div>
+                                            <span class="first-span">{{$name}} :</span>
+                                            @foreach($array as $names)
+                                                <?php
+                                                $key=key($names);
+                                                ?>
+                                                <span><a href="{{URL::Route('name',$key)}}">{{$names->$key}}@if(!$loop->last) , @endif</a></span>
+                                            @endforeach
+                                        </div>
+                                    @endforeach
+                                @endforeach
+                            @endif
                         </div>
 
                     </div>

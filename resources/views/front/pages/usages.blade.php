@@ -1,6 +1,6 @@
 @extends('front.layouts.layout')
 @section('content')
-    <title>Find names</title>
+    <title>Usage</title>
     <meta name="Description" content="">
     <meta property="og:url" content="{!!Request::url()!!}"/>
     <meta property="og:type" content="website"/>
@@ -45,18 +45,6 @@
         <div class="container no-margin-top">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="title-single">
-                        <h2>@lang('lang.namesTitle') {{$string}}</h2>
-                    </div>
-                    <hr>
-                    <div class="letters">
-                        <ul class="list-inline">
-                            @foreach(range('A','Z') as $letter)
-                                <li class="alfabet-search"><a href="{!!URL::to('letter',$letter)!!}">{!! $letter !!}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
                     <div class="filters">
                         <p>@lang('lang.filters')</p>
                             <ul class="list-inline">
@@ -104,7 +92,7 @@
                                 @if(json_decode($item->usages))
                                     @foreach(json_decode($item->usages,true) as $usage)
 
-                                    <li><a href="{{URL::Route('usages').'?usage='.key($usage)}}">@if($loop->index),@endif {{$usage[key($usage)]}}</a></li>
+                                    <li><a href="{{key($usage)}}">@if($loop->index),@endif {{$usage[key($usage)]}}</a></li>
                                     @endforeach
                                 @endif
                             </ul>

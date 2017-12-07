@@ -87,6 +87,7 @@ class NamesController extends Controller
             }
         }
         $item->usages=json_encode($array_usages);
+        $item->prefix=mb_strtolower(str_replace('\'','',$item->name));
         $item->save();
         $object=new \App\Http\Controllers\Admin\AdminController();
         $address='names';
@@ -139,7 +140,7 @@ class NamesController extends Controller
                             // create Image from file
                             $image=Image::make($url);
                             // use callback to define details
-                            $image->text($item->getName(), 15, 75, function ($font) {
+                            $image->text($item->name, 15, 75, function ($font) {
                                 $font->file(public_path() . '/font/OpenSans-Regular.ttf');
                                 $font->size(50);
 
